@@ -1,14 +1,27 @@
 vim.opt.relativenumber = true
 vim.opt.termguicolors = false
 
-vim.opt.ts = 2
-vim.opt.sts = 2
-vim.opt.sw = 2
+vim.opt.ts = 4
+vim.opt.sts = 4
+vim.opt.sw = 4
 vim.opt.et = true
 vim.opt.ai = true
+vim.opt.so = 8
 
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
+vim.opt.wrap = false
+vim.opt.ve = "block"
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
+
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+
+vim.opt.clipboard = "unnamedplus"
+
+vim.opt.inccommand = "split"
+
+vim.opt.ignorecase = true
