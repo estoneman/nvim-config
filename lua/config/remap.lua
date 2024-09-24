@@ -20,6 +20,16 @@ vim.keymap.set("n", "<leader>fh", builtin.help_tags, {
     desc = "builtin.help_tags: Search for a string in your current working directory and get results live as you type, respects .gitignore. (Requires ripgrep)"
 })
 
+vim.keymap.set("n", "<leader>fr", ":Telescope frecency<CR>", {
+    desc = "Telescope frecency: list frequently and recently visited files"
+})
+
+-- lazy
 vim.keymap.set("n", "<leader>lz", Lazy.home, {
-    desc = ":Lazy home: go to Lazy vim\"s home menu"
+    desc = ":Lazy home: go to Lazy vim's home menu"
+})
+
+-- mason
+vim.keymap.set("n", "<leader>m", vim.cmd.Mason, {
+    desc = ":Mason: go to Mason home menu"
 })
