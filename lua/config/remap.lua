@@ -29,6 +29,14 @@ vim.keymap.set("n", "<leader>lz", Lazy.home, {
     desc = ":Lazy home: go to Lazy vim's home menu"
 })
 
+vim.keymap.set("n", "<leader>lu", Lazy.update, {
+    desc = ":Lazy update: update installed plugins in Lazy"
+})
+
+vim.keymap.set("n", "<leader>lc", Lazy.check, {
+    desc = ":Lazy check: check for updates of installed plugins in Lazy"
+})
+
 -- mason
 vim.keymap.set("n", "<leader>m", vim.cmd.Mason, {
     desc = ":Mason: go to Mason home menu"
