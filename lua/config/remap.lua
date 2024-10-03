@@ -1,43 +1,77 @@
+local keymap = vim.keymap
+
 -- general
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 -- telescope.nvim
 local builtin = require("telescope.builtin")
 
-vim.keymap.set("n", "<leader>ff", builtin.find_files, {
+keymap.set("n", "<leader>ff", builtin.find_files, {
     desc = "builtin.find_files: Lists files in your current working directory, respects .gitignore"
 })
 
-vim.keymap.set("n", "<leader>fg", builtin.live_grep, {
+keymap.set("n", "<leader>fg", builtin.live_grep, {
     desc = "builtin.live_grep: Fuzzy search through the output of git ls-files command, respects .gitignore"
 })
 
-vim.keymap.set("n", "<leader>fb", builtin.buffers, {
+keymap.set("n", "<leader>fb", builtin.buffers, {
     desc = "builtin.buffers: Searches for the string under your cursor or selection in your current working directory"
 })
 
-vim.keymap.set("n", "<leader>fh", builtin.help_tags, {
+keymap.set("n", "<leader>fh", builtin.help_tags, {
     desc = "builtin.help_tags: Search for a string in your current working directory and get results live as you type, respects .gitignore. (Requires ripgrep)"
 })
 
-vim.keymap.set("n", "<leader>fr", ":Telescope frecency<CR>", {
+keymap.set("n", "<leader>fr", ":Telescope frecency<cr>", {
     desc = "Telescope frecency: list frequently and recently visited files"
 })
 
 -- lazy
-vim.keymap.set("n", "<leader>lz", Lazy.home, {
+keymap.set("n", "<leader>lz", Lazy.home, {
     desc = ":Lazy home: go to Lazy vim's home menu"
 })
 
-vim.keymap.set("n", "<leader>lu", Lazy.update, {
+keymap.set("n", "<leader>lu", Lazy.update, {
     desc = ":Lazy update: update installed plugins in Lazy"
 })
 
-vim.keymap.set("n", "<leader>lc", Lazy.check, {
+keymap.set("n", "<leader>lc", Lazy.check, {
     desc = ":Lazy check: check for updates of installed plugins in Lazy"
 })
 
+keymap.set("n", "<leader>lr", Lazy.reaload, {
+    desc = ":Lazy reload: reload Lazy configuration (e.g., pick up new plugins in real-time)",
+})
+
+-- lspconfig
+keymap.set("n", "<leader>ll", vim.cmd.LspLog, {
+    desc = ":LspLog: show logs of lsp clients"
+})
+
+keymap.set("n", "<leader>li", vim.cmd.LspInfo, {
+    desc = ":LspInfo: show active lsp clients"
+})
+
 -- mason
-vim.keymap.set("n", "<leader>m", vim.cmd.Mason, {
+keymap.set("n", "<leader>m", vim.cmd.Mason, {
     desc = ":Mason: go to Mason home menu"
+})
+
+-- wit
+keymap.set("n", "<leader>ws", ":WitSearch", {
+    desc = ":WitSearch: open cmdline for adding search terms"
+})
+
+-- dashboard
+keymap.set("n", "<leader>ev", "<cmd>tabnew $MYVIMRC <bar> tcd %:h<cr>", {
+    silent = true,
+    desc = "open init.lua",
+})
+
+keymap.set("n", "<leader>gl", ":-tabm<cr>", {
+    desc = "Move one tab left",
+})
+
+keymap.set("n", "<leader>gr", ":+tabm<cr>", {
+    desc = "Move one tab right",
 })
