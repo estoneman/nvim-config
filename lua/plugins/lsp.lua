@@ -24,6 +24,12 @@ local mason_lspconfig_setup = function()
         automatic_installation = false,
 
         handlers = {
+            ["bashls"] = function ()
+                lspconfig["bashls"].setup({
+                    on_attach = on_attach,
+                    capabilities = capabilities,
+                })
+            end,
             ["lua_ls"] = function()
                 lspconfig["lua_ls"].setup({
                     on_attach = on_attach,
@@ -103,11 +109,6 @@ return {
 
         local cmp = require("cmp")
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
-        local has_words_before = function()
-            if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end
-            local line, col = table.unpack(vim.api.nvim_win_get_cursor(0))
-            return col ~= 0 and vim.api.nvim_buf_get_text(0, line-1, 0, line-1, col, {})[1]:match("^%s*$") == nil
-        end
 
         cmp.setup({
             snippet = {
@@ -120,20 +121,16 @@ return {
                 ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
                 ["<C-y>"] = cmp.mapping.confirm({ select = true }),
                 ["<C-Space>"] = cmp.mapping.complete(),
-                ["<Tab>"] = vim.schedule_wrap(function(fallback)
-                    if cmp.visible() and has_words_before() then
-                        cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-                    else
-                        fallback()
-                    end
-                end),
             }),
             sources = cmp.config.sources({
-                { name = "nvim_lsp", group_index = 2},
-                { name = "luasnip", group_index = 2},
-                { name = "friendly-snippets", group_index = 2},
-            }),
-            { { name = "buffer" }, },
+                { name = "nvim_lsp" },
+                { name = "luasnip" },
+                { name = "friendly_snippets", },
+            }, {
+                { name = 'buffer' },
+                { name = "cmdline", },
+                { name = "path", },
+            })
         })
     end,
 }
