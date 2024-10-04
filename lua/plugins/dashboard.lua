@@ -1,30 +1,7 @@
+local dashboard_logo = require("config.dashboard-logo")
 local conf = {}
 
-conf.header = {
-    "                              ",
-    "                              ",
-    "                              ",
-    "                        'c.   ",
-    "                 ,xNMM.       ",
-    "               .OMMMMo        ",
-    "               OMMM0,         ",
-    "     .;loddo:' loolloddol;.   ",
-    "   cKMMMMMMMMMMNWMMMMMMMMMM0: ",
-    " .KMMMMMMMMMMMMMMMMMMMMMMMWd. ",
-    " XMMMMMMMMMMMMMMMMMMMMMMMX.   ",
-    ";MMMMMMMMMMMMMMMMMMMMMMMM:    ",
-    ":MMMMMMMMMMMMMMMMMMMMMMMM:    ",
-    ".MMMMMMMMMMMMMMMMMMMMMMMMX.   ",
-    " kMMMMMMMMMMMMMMMMMMMMMMMMWd. ",
-    " .XMMMMMMMMMMMMMMMMMMMMMMMMMMk",
-    "  .XMMMMMMMMMMMMMMMMMMMMMMMMK.",
-    "    kMMMMMMMMMMMMMMMMMMMMMMd  ",
-    "     ;KMMMMMMMWXXWMMMMMMMk.   ",
-    "       .cooc,.    .,coo:.     ",
-    "                              ",
-    "                              ",
-    "                              ",
-}
+conf.header = dashboard_logo.header
 
 conf.center = {
   {
