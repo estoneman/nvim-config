@@ -1,6 +1,16 @@
 local on_attach = function(_, bufnr)
     -- Enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+    -- Enable code navigation keymaps
+    vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", {
+		desc="Go to declaration"
+	})
+    vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", {
+		desc="Go to definition"
+	})
+    vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", {
+		desc="go to implemenation"
+	})
 end
 
 local mason_lspconfig_setup = function()
@@ -96,10 +106,11 @@ return {
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-cmdline",
         "hrsh7th/nvim-cmp",
+        "hrsh7th/cmp-nvim-lua",
         "L3MON4D3/LuaSnip",
         "saadparwaiz1/cmp_luasnip",
         "j-hui/fidget.nvim",
-        "rafamadriz/friendly-snippets",
+        "onsails/lspkind.nvim",
     },
 
     config = function ()
@@ -109,28 +120,42 @@ return {
 
         local cmp = require("cmp")
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
+        local lspkind = require("lspkind")
 
         cmp.setup({
-            snippet = {
-                expand = function(args)
-                    require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
-                end,
-            },
             mapping = cmp.mapping.preset.insert({
                 ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
                 ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
                 ["<C-y>"] = cmp.mapping.confirm({ select = true }),
                 ["<C-Space>"] = cmp.mapping.complete(),
             }),
+
+            snippet = {
+                expand = function(args)
+                    require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
+                end,
+            },
+
             sources = cmp.config.sources({
+                { name = "nvim_lua" },
                 { name = "nvim_lsp" },
                 { name = "luasnip" },
-                { name = "friendly_snippets", },
-            }, {
-                { name = 'buffer' },
-                { name = "cmdline", },
-                { name = "path", },
-            })
+                { name = "path" },
+                { name = "buffer", keyword_length = 5, max_item_count = 20, },
+            }),
+
+            formatting = {
+                format = lspkind.cmp_format({
+                    with_text = true,
+                    menu = {
+                        buffer = "[buf]",
+                        nvim_lsp = "[lsp]",
+                        nvim_lua = "[api]",
+                        path = "[path]",
+                        luasnip = "[snip]",
+                    },
+                }),
+            },
         })
     end,
 }
