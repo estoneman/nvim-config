@@ -1,4 +1,5 @@
 local keymap = vim.keymap
+local ls = require("luasnip")
 
 -- general
 keymap.set("n", "<leader>pv", vim.cmd.Ex, {
@@ -89,3 +90,14 @@ keymap.set("n", "<leader>gl", ":-tabm<cr>", {
 keymap.set("n", "<leader>gr", ":+tabm<cr>", {
     desc = "Move one tab right",
 })
+
+-- luasnip
+keymap.set({"i"}, "<C-K>", function() ls.expand() end, {silent = true})
+keymap.set({"i", "s"}, "<C-L>", function() ls.jump( 1) end, {silent = true})
+keymap.set({"i", "s"}, "<C-J>", function() ls.jump(-1) end, {silent = true})
+
+keymap.set({"i", "s"}, "<C-E>", function()
+    if ls.choice_active() then
+        ls.change_choice(1)
+    end
+end, {silent = true})
