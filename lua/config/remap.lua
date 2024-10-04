@@ -1,7 +1,13 @@
 local keymap = vim.keymap
 
 -- general
-keymap.set("n", "<leader>pv", vim.cmd.Ex)
+keymap.set("n", "<leader>pv", vim.cmd.Ex, {
+    desc = "Return to netrw"
+})
+
+keymap.set("n", "<leader>ch", vim.cmd.checkhealth, {
+    desc = "Run checkhealth"
+})
 
 -- telescope.nvim
 local builtin = require("telescope.builtin")
@@ -55,6 +61,14 @@ keymap.set("n", "<leader>li", vim.cmd.LspInfo, {
 -- mason
 keymap.set("n", "<leader>m", vim.cmd.Mason, {
     desc = ":Mason: go to Mason home menu"
+})
+
+keymap.set("n", "<leader>ml", vim.cmd.MasonLog, {
+    desc = ":MasonLog: view logs for Mason",
+})
+
+keymap.set("n", "<leader>mr", vim.cmd.MasonUpdate, {
+    desc = ":MasonLog: update Mason registries",
 })
 
 -- wit
