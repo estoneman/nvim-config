@@ -85,6 +85,17 @@ local mason_lspconfig_setup = function()
                     capabilities = capabilities,
                 })
             end,
+            ["yamlls"] = function ()
+                lspconfig["yamlls"].setup({
+                    on_attach = on_attach,
+                    capabilities = capabilities,
+                    settings = {
+                        schemas = {
+                            ["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json"] = "/*.k8s.yaml",
+                        },
+                    },
+                })
+            end,
             function(server_name)
                 lspconfig[server_name].setup({
                     on_attach = on_attach,
