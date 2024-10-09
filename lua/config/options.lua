@@ -13,6 +13,12 @@ vim.opt.incsearch = true
 
 vim.opt.wrap = false
 vim.opt.ve = "block"
+vim.opt.tw = 80
+
+vim.opt.cc = "0"
+vim.opt.cuc = true
+vim.opt.cul = true
+vim.opt.scl = "auto"
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"

@@ -60,7 +60,7 @@ keymap.set("n", "<leader>li", vim.cmd.LspInfo, {
 })
 
 -- mason
-keymap.set("n", "<leader>m", vim.cmd.Mason, {
+keymap.set("n", "<leader>ma", vim.cmd.Mason, {
     desc = ":Mason: go to Mason home menu"
 })
 
@@ -73,7 +73,7 @@ keymap.set("n", "<leader>mr", vim.cmd.MasonUpdate, {
 })
 
 -- wit
-keymap.set("n", "<leader>ws", ":WitSearch", {
+keymap.set("n", "<leader>ws", ":WitSearch ", {
     desc = ":WitSearch: open cmdline for adding search terms"
 })
 
