@@ -1,5 +1,7 @@
 local keymap = vim.keymap
 local ls = require("luasnip")
+local harpoon_ui = require("harpoon.ui")
+local harpoon_mark = require("harpoon.mark")
 
 -- general
 keymap.set("n", "<leader>pv", vim.cmd.Ex, {
@@ -101,3 +103,12 @@ keymap.set({"i", "s"}, "<C-E>", function()
         ls.change_choice(1)
     end
 end, {silent = true})
+
+-- harpoon
+keymap.set("n", "<leader>hm", harpoon_mark.add_file, {
+    desc = "harpoon.mark.add_file: you mark files you want to revisit later on",
+})
+
+keymap.set("n", "<leader>ht", harpoon_ui.toggle_quick_menu, {
+    desc = "harpoon.ui.toggle_quick_menu: view all project marks",
+})
