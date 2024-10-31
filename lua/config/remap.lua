@@ -105,7 +105,7 @@ keymap.set({"i", "s"}, "<C-E>", function()
 end, {silent = true})
 
 -- harpoon
-keymap.set("n", "<leader>hm", harpoon_mark.add_file, {
+keymap.set("n", "<leader>ha", harpoon_mark.add_file, {
     desc = "harpoon.mark.add_file: you mark files you want to revisit later on",
 })
 
